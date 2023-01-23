@@ -1,2 +1,2 @@
-1-3 Pages -> Yuvraj
-Books && jhantu page -> Roshan
+1-3 Navigation && Books Widget -> Yuvraj
+Books && Course page -> Roshan
