@@ -61,69 +61,77 @@ class _BookScreenState extends State<BookScreen> {
         //     )).w(120).h(100),
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
-        body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              gradient: isDarkModeEnabled
-                  ? const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromARGB(255, 51, 61, 58),
-                        Color.fromARGB(255, 0, 113, 109)
-                      ],
-                    )
-                  : const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromARGB(255, 113, 132, 244),
-                        Color.fromARGB(255, 35, 101, 243)
-                      ],
-                    )),
-          padding: const EdgeInsets.all(5),
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              InkWell(
-                onTap: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  gradient: isDarkModeEnabled
+                      ? const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromARGB(255, 51, 61, 58),
+                      Color.fromARGB(255, 0, 113, 109)
+                    ],
+                  )
+                      : const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromARGB(255, 113, 132, 244),
+                      Color.fromARGB(255, 35, 101, 243)
+                    ],
+                  )),
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
-                          EvaIcons.options,
-                          color: isDarkModeEnabled
-                              ? Colors.redAccent
-                              : Colors.greenAccent,
-                        ).px8(),
-                        "Edit Course"
-                            .text
-                            .color(isDarkModeEnabled
-                                ? Colors.redAccent
-                                : Colors.greenAccent)
-                            .make(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              EvaIcons.options,
+                              color: isDarkModeEnabled
+                                  ? Colors.redAccent
+                                  : Colors.greenAccent,
+                            ).px8(),
+                            "Edit Course"
+                                .text
+                                .color(isDarkModeEnabled
+                                    ? Colors.redAccent
+                                    : Colors.greenAccent)
+                                .make(),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            "Computer Science"
+                                .text
+                                .xl2
+                                .color(isDarkModeEnabled
+                                    ? Colors.lightBlueAccent
+                                    : const Color.fromARGB(255, 239, 248, 142))
+                                .bold
+                                .make(),
+                          ],
+                        ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        "Computer Science"
-                            .text
-                            .xl2
-                            .color(isDarkModeEnabled
-                                ? Colors.lightBlueAccent
-                                : const Color.fromARGB(255, 239, 248, 142))
-                            .bold
-                            .make(),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+
+                ],
               ),
-              //const BookView(),
+            ),
+              const SizedBox(height: 50,),
+              const BookView(),
             ],
           ),
         ),

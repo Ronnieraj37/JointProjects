@@ -9,9 +9,8 @@ class BookView extends StatelessWidget {
         itemCount: 5,
         itemBuilder: (context, index) {
           return Container(
-            width: double.infinity,
-            height: 50,
             color: Colors.blue,
+            child: Text("data",textScaleFactor: 5),
           );
         });
   }
