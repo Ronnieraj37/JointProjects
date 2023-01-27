@@ -3,6 +3,7 @@ import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:iiitdm/widgets/book_view.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:drop_down_list/drop_down_list.dart';
 
 class BookScreen extends StatefulWidget {
   const BookScreen({super.key});
@@ -13,6 +14,7 @@ class BookScreen extends StatefulWidget {
 
 class _BookScreenState extends State<BookScreen> {
   bool isDarkModeEnabled = false;
+  List<String> courses = ["Computer Science","Electronics","Mechanical","Smart Manufacturing"];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -60,78 +62,118 @@ class _BookScreenState extends State<BookScreen> {
         //       ],
         //     )).w(120).h(100),
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-        body: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                gradient: isDarkModeEnabled
-                    ? const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color.fromARGB(255, 51, 61, 58),
-                    Color.fromARGB(255, 0, 113, 109)
-                  ],
-                )
-                    : const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color.fromARGB(255, 113, 132, 244),
-                    Color.fromARGB(255, 35, 101, 243)
-                  ],
-                )),
-              padding: const EdgeInsets.all(5),
-              child: Column(
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            EvaIcons.options,
-                            color: isDarkModeEnabled
-                                ? Colors.redAccent
-                                : Colors.greenAccent,
-                          ).px8(),
-                          "Edit Course"
-                              .text
-                              .color(isDarkModeEnabled
-                                  ? Colors.redAccent
-                                  : Colors.greenAccent)
-                              .make(),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          "Computer Science"
-                              .text
-                              .xl2
-                              .color(isDarkModeEnabled
-                                  ? Colors.lightBlueAccent
-                                  : const Color.fromARGB(255, 239, 248, 142))
-                              .bold
-                              .make(),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-              ],
-            ),
+        body: Container(
+          decoration: BoxDecoration(
+             gradient: LinearGradient(
+                 colors: isDarkModeEnabled ?
+                 const [Color(0x0048FFFF),Color(0xFF253341)]: const [Color(
+                     0xD545F3E4),Colors.white],
+               begin: Alignment.topLeft,
+               end: Alignment.bottomRight,
+             ),
           ),
-            const SizedBox(height: 50,),
-            // const BookView(),
-          ],
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: isDarkModeEnabled
+                        ? const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromARGB(255, 51, 61, 58),
+                              Color.fromARGB(255, 0, 113, 109)
+                            ],
+                          )
+                        : const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromARGB(255, 113, 132, 244),
+                              Color.fromARGB(255, 35, 101, 243)
+                            ],
+                          )),
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                EvaIcons.options,
+                                color: isDarkModeEnabled
+                                    ? Colors.redAccent
+                                    : Colors.greenAccent,
+                              ).px8(),
+                              "Edit Course"
+                                  .text
+                                  .color(isDarkModeEnabled
+                                      ? Colors.redAccent
+                                      : Colors.greenAccent)
+                                  .make(),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              "Computer Science"
+                                  .text
+                                  .xl
+                                  .color(isDarkModeEnabled
+                                      ? Colors.lightBlueAccent
+                                      : const Color.fromARGB(255, 239, 248, 142))
+                              .extraBold
+                                  .make(),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+               const BookView(),
+      // DropDownState(
+      //   DropDown(
+      //     bottomSheetTitle: const Text(
+      //       "kCities",
+      //       style: TextStyle(
+      //         fontWeight: FontWeight.bold,
+      //         fontSize: 20.0,
+      //       ),
+      //     ),
+      //     submitButtonChild: const Text(
+      //       'Done',
+      //       style: TextStyle(
+      //         fontSize: 16,
+      //         fontWeight: FontWeight.bold,
+      //       ),
+      //     ),
+      //     data: courses,
+      //     selectedItems: (List<dynamic> selectedList) {
+      //       List<String> list = [];
+      //       for(var item in selectedList) {
+      //         if(item is SelectedListItem) {
+      //           list.add(item.name);
+      //         }
+      //       }
+      //       showSnackBar(list.toString());
+      //     },
+      //     enableMultipleSelection: true,
+      //   ),
+      // ).showModal(context);
+            ],
+          ),
         ),
       ),
     );
