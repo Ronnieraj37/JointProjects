@@ -1,0 +1,7 @@
+Providers
+    a. Courses - List of course. Each 'course'.
+                it will contain information which will typically
+                be used by the course detail page and few of it's
+                members will be used by course_item widget.
+    b. Branches - it will contain a list of branches. Each branches
+                  will have id, title, Map<semId, <List of Course Ids>
