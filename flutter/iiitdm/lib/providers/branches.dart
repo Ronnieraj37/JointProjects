@@ -56,17 +56,28 @@ class Semesters with ChangeNotifier {
 class Branch {
   final String id;
   final String title;
+  final Map<String, List<String>> courseBySemId;
 
-  Branch({required this.id, required this.title});
+  Branch({required this.id, required this.title, required this.courseBySemId});
 }
 
 class Branches with ChangeNotifier {
   final List<Branch> _branches = [
-    Branch(id: 'cs', title: 'Computer Science'),
-    Branch(id: 'csai', title: 'Computer Science Artificial Intelligence'),
-    Branch(id: 'ece', title: 'Electronics and Communication'),
-    Branch(id: 'mech', title: 'Mechanical Engineering'),
-    Branch(id: 'sm', title: 'Smart Manufacturing'),
+    Branch(id: 'cs', title: 'Computer Science',
+    courseBySemId: {'1': ['cal','ee','ece','psp','mfe','fepd','eep','pspp','elcs']}),
+
+    Branch(id: 'csai', title: 'Computer Science Artificial Intelligence',
+    courseBySemId: {'1': ['cal','ee','ece','psp','mfe','fepd','eep','pspp','elcs']}),
+
+    Branch(id: 'ece', title: 'Electronics and Communication',
+    courseBySemId: {'1': ['cal','ee','ece','psp','mfe','fepd','eep','pspp','elcs']}),
+
+    Branch(id: 'mech', title: 'Mechanical Engineering',
+    courseBySemId: {'1': ['cal','ee','ece','psp','mfe','fepd','eep','pspp','elcs']}),
+
+    Branch(id: 'sm', title: 'Smart Manufacturing',
+    courseBySemId: {'1': ['cal','ee','ece','psp','mfe','fepd','eep','pspp','elcs']}),
+    
   ];
 
   List<Branch> get branches {

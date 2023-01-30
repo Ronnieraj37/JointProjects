@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iiitdm/providers/branches.dart';
-import 'package:iiitdm/screens/book_screen.dart';
+import 'package:iiitdm/providers/courses.dart';
+import 'package:iiitdm/screens/course_list_screen.dart';
 import 'package:provider/provider.dart';
-import './screens/semester_screen.dart';
 import './screens/home_screen.dart';
-import './screens/branch_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +17,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: Branches()),
         ChangeNotifierProvider.value(value: Semesters()),
+        ChangeNotifierProvider.value(value: Courses()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -26,10 +26,8 @@ class MyApp extends StatelessWidget {
         ),
         //home: const MyHomePage(title: 'Flutter Demo Home Page'),
         routes: {
-          "/": (context) =>  HomeScreen(),
-          BookScreen.routeName: (context) => const BookScreen(),
-          BranchScreen.routeName: (context) => BranchScreen(),
-          SemesterScreen.routeName:(context) => SemesterScreen(),
+          "/": (context) => HomeScreen(),
+          CourseListScreen.routeName: (context) => const CourseListScreen(),
         },
       ),
     );

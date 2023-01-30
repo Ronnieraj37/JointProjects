@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:iiitdm/providers/branches.dart';
-import 'package:iiitdm/screens/book_screen.dart';
-import 'package:iiitdm/screens/branch_screen.dart';
-import 'package:iiitdm/screens/semester_screen.dart';
+import 'package:iiitdm/screens/course_list_screen.dart';
 import 'package:provider/provider.dart';
 import '../utilityWidgets/expandable_list.dart';
 
@@ -31,11 +29,8 @@ class HomeScreen extends StatelessWidget {
         title: const Text("IIITDM"),
       ),
       body: ListView(children: [
-        ExpandableList('Branches', branchesById, BookScreen.routeName),
-        ExpandableList('Semesters', semestersById, SemesterScreen.routeName),
-        ElevatedButton(
-            onPressed: () => Navigator.of(context).pushNamed('bookScreen'),
-            child: Text('Book Screen'))
+        ExpandableList('Branches', branchesById, CourseListScreen.routeName),
+        ExpandableList('Semesters', semestersById, 'null'),
       ]),
     );
   }

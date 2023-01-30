@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iiitdm/screens/branch_screen.dart';
+import 'package:iiitdm/screens/course_list_screen.dart';
 
 class ExpandableList extends StatefulWidget {
   final String title;
@@ -20,7 +20,7 @@ class _ExpandableListState extends State<ExpandableList> {
     widget.items.forEach((key, value) {
       listTiles.add(GestureDetector(
         onTap: () {
-          if (widget.title == 'Branches') {
+          if (widget.screenRouteName == CourseListScreen.routeName) {
             Navigator.of(context)
                 .pushNamed(widget.screenRouteName, arguments: key);
           }

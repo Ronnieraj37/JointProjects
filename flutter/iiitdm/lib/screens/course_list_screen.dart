@@ -8,24 +8,19 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:lottie/lottie.dart';
 
-class BookScreen extends StatefulWidget {
-  const BookScreen({super.key});
-  static const routeName = 'bookScreen';
+class CourseListScreen extends StatefulWidget {
+  const CourseListScreen({super.key});
+  static const routeName = 'CourseListScreen';
 
   @override
-  State<BookScreen> createState() => _BookScreenState();
+  State<CourseListScreen> createState() => _CourseListScreenState();
 }
 
-class _BookScreenState extends State<BookScreen> {
+class _CourseListScreenState extends State<CourseListScreen> {
   bool isDarkModeEnabled = false;
   int index = 0;
   bool stopAnim = false;
-  // List<String> branches = [
-  //   "Computer Science",
-  //   "Electronics",
-  //   "Mechanical",
-  //   "Smart Manufacturing"
-  // ];
+  String? selectedBranchId = null;
   List<String> animations = [
     "https://assets6.lottiefiles.com/packages/lf20_iVPQC8jyX2.json",
     "https://assets2.lottiefiles.com/packages/lf20_4kmUDEKo63.json",
@@ -48,11 +43,12 @@ class _BookScreenState extends State<BookScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedBranchId =
-        ModalRoute.of(context)!.settings.arguments as String;
+    if (selectedBranchId == null)
+      selectedBranchId = ModalRoute.of(context)!.settings.arguments as String;
+
     final branchesProvider = Provider.of<Branches>(context);
-    final branches =
-        branchesProvider.branches.map((branch) => branch.title).toList();
+    // final branches =
+    //     branchesProvider.branches.map((branch) => branch.title).toList();
     return MaterialApp(
       title: 'Books Screen',
       theme: ThemeData.light(),
@@ -123,8 +119,9 @@ class _BookScreenState extends State<BookScreen> {
                               child: Container(
                                 padding: const EdgeInsets.all(10),
                                 child: Column(
-                                  children: [
-                                    Card(
+                                  children:
+                                      branchesProvider.branches.map((branch) {
+                                    return Card(
                                       elevation: 5,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -134,6 +131,7 @@ class _BookScreenState extends State<BookScreen> {
                                         onTap: () {
                                           Navigator.pop(context);
                                           index = 0;
+                                          selectedBranchId = branch.id;
                                           stopAnim = false;
                                           setState(() {});
                                           Future.delayed(
@@ -145,98 +143,14 @@ class _BookScreenState extends State<BookScreen> {
                                             },
                                           );
                                         },
-                                        title: "Computer Science"
+                                        title: branch.title
                                             .text
                                             .xl
                                             .make()
                                             .centered(),
                                       ),
-                                    ),
-                                    Card(
-                                      elevation: 5,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      margin: const EdgeInsets.all(5),
-                                      child: ListTile(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                          index = 1;
-                                          stopAnim = false;
-                                          setState(() {});
-                                          Future.delayed(
-                                            const Duration(seconds: 3),
-                                            () {
-                                              setState(() {
-                                                stopAnim = true;
-                                              });
-                                            },
-                                          );
-                                        },
-                                        title: "Electronics & Communication"
-                                            .text
-                                            .xl
-                                            .make()
-                                            .centered(),
-                                      ),
-                                    ),
-                                    Card(
-                                      elevation: 5,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      margin: const EdgeInsets.all(5),
-                                      child: ListTile(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                          index = 2;
-                                          stopAnim = false;
-                                          setState(() {});
-                                          Future.delayed(
-                                            const Duration(seconds: 3),
-                                            () {
-                                              setState(() {
-                                                stopAnim = true;
-                                              });
-                                            },
-                                          );
-                                        },
-                                        title: "Mechanical Engineering"
-                                            .text
-                                            .xl
-                                            .make()
-                                            .centered(),
-                                      ),
-                                    ),
-                                    Card(
-                                      elevation: 5,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      margin: const EdgeInsets.all(5),
-                                      child: ListTile(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                          index = 3;
-                                          stopAnim = false;
-                                          setState(() {});
-                                          Future.delayed(
-                                            const Duration(seconds: 3),
-                                            () {
-                                              setState(() {
-                                                stopAnim = true;
-                                              });
-                                            },
-                                          );
-                                        },
-                                        title: "Smart Manufacturing"
-                                            .text
-                                            .xl
-                                            .make()
-                                            .centered(),
-                                      ),
-                                    ),
-                                  ],
+                                    );
+                                  }).toList(),
                                 ),
                               ),
                             );
@@ -291,7 +205,10 @@ class _BookScreenState extends State<BookScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    branchesProvider.branches.firstWhere((branch) => branch.id == selectedBranchId).title
+                                    branchesProvider.branches
+                                        .firstWhere((branch) =>
+                                            branch.id == selectedBranchId)
+                                        .title
                                         .text
                                         .xl
                                         .color(isDarkModeEnabled
