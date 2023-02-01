@@ -64,7 +64,9 @@ class _CourseListScreenState extends State<CourseListScreen> {
               : const Color.fromARGB(255, 22, 85, 195),
           title: const Text("Book Screen"),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
               size: 25,
@@ -143,9 +145,7 @@ class _CourseListScreenState extends State<CourseListScreen> {
                                             },
                                           );
                                         },
-                                        title: branch.title
-                                            .text
-                                            .xl
+                                        title: branch.title.text.xl
                                             .make()
                                             .centered(),
                                       ),
