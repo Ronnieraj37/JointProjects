@@ -105,7 +105,6 @@ class Courses with ChangeNotifier {
       if (_courses[i].semIds[0] == semId) {
         cr.add(_courses[i]);
       }
-      
     }
     return cr;
   }

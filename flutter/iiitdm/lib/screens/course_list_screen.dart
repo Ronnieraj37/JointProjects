@@ -23,6 +23,7 @@ class _CourseListScreenState extends State<CourseListScreen> {
   String? selectedBranchId = null;
   List<String> animations = [
     "https://assets6.lottiefiles.com/packages/lf20_iVPQC8jyX2.json",
+    "https://assets6.lottiefiles.com/packages/lf20_iVPQC8jyX2.json",
     "https://assets2.lottiefiles.com/packages/lf20_4kmUDEKo63.json",
     "https://assets9.lottiefiles.com/packages/lf20_Wul2a03BPx.json",
     "https://assets7.lottiefiles.com/packages/lf20_8CWmbWg5Pl.json"
@@ -87,15 +88,6 @@ class _CourseListScreenState extends State<CourseListScreen> {
             )
           ],
         ),
-        // floatingActionButton: FloatingActionButton(
-        //     onPressed: () {},
-        //     child: Row(
-        //       children: [
-        //         const Icon(Icons.arrow_back_ios_new_rounded).p0(),
-        //         "Edit Course".text.make(),
-        //       ],
-        //     )).w(120).h(100),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -123,22 +115,22 @@ class _CourseListScreenState extends State<CourseListScreen> {
                                 child: Column(
                                   children:
                                       branchesProvider.branches.map((branch) {
-                                    return Card(
+                                      return Card(
                                       elevation: 5,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10)),
+                                          BorderRadius.circular(10)),
                                       margin: const EdgeInsets.all(5),
                                       child: ListTile(
                                         onTap: () {
                                           Navigator.pop(context);
-                                          index = 0;
+                                          index = index;
                                           selectedBranchId = branch.id;
                                           stopAnim = false;
                                           setState(() {});
                                           Future.delayed(
                                             const Duration(seconds: 3),
-                                            () {
+                                                () {
                                               setState(() {
                                                 stopAnim = true;
                                               });
@@ -210,7 +202,6 @@ class _CourseListScreenState extends State<CourseListScreen> {
                                             branch.id == selectedBranchId)
                                         .title
                                         .text
-                                        .xl
                                         .color(isDarkModeEnabled
                                             ? Colors.lightBlueAccent
                                             : const Color.fromARGB(
@@ -229,62 +220,48 @@ class _CourseListScreenState extends State<CourseListScreen> {
                       height: 20,
                     ),
                     const BookView(),
-                    // DropDownState(
-                    //   DropDown(
-                    //     bottomSheetTitle: const Text(
-                    //       "kCities",
-                    //       style: TextStyle(
-                    //         fontWeight: FontWeight.bold,
-                    //         fontSize: 20.0,
-                    //       ),
-                    //     ),
-                    //     submitButtonChild: const Text(
-                    //       'Done',
-                    //       style: TextStyle(
-                    //         fontSize: 16,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //     data: branches,
-                    //     selectedItems: (List<dynamic> selectedList) {
-                    //       List<String> list = [];
-                    //       for(var item in selectedList) {
-                    //         if(item is SelectedListItem) {
-                    //           list.add(item.name);
-                    //         }
-                    //       }
-                    //       showSnackBar(list.toString());
-                    //     },
-                    //     enableMultipleSelection: true,
-                    //   ),
-                    // ).showModal(context);
                   ],
                 )
-              : Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: isDarkModeEnabled
-                          ? const [Color(0x0048FFFF), Color(0xFF253341)]
-                          : const [Color(0xD545F3E4), Colors.white],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: LottieBuilder.network(
-                    animations[index],
-                    height: 500,
-                    width: 500,
-                    animate: true,
-                    repeat: true,
-                    frameRate: FrameRate(60),
-                    reverse: true,
-                    fit: BoxFit.fitWidth,
-                  ).centered(),
-                ),
+              : AnimationPage(isDarkModeEnabled,animations[index]),
         ),
       ),
     );
   }
 }
+
+class AnimationPage extends StatelessWidget {
+  bool isDarkModeEnabled;
+  String aniationId;
+
+  AnimationPage(this.isDarkModeEnabled,this.aniationId, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: isDarkModeEnabled
+              ? const [Color(0x0048FFFF), Color(0xFF253341)]
+              : const [Color(0xD545F3E4), Colors.white],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: LottieBuilder.network(
+        aniationId,
+        height: 500,
+        width: 500,
+        animate: true,
+        repeat: true,
+        frameRate: FrameRate(60),
+        reverse: true,
+        fit: BoxFit.fitWidth,
+      ).centered(),
+    );
+  }
+}
+
+
+
